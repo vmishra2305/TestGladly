@@ -2,7 +2,7 @@
 
 name: run the workflow
 on:
-  repository-dispatch:
+  repository_dispatch:
     types: [my-event]
 
 jobs:
