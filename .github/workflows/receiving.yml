@@ -25,7 +25,7 @@ jobs:
         - name: repository dispatch
           uses: peter-evans/repository-dispatch@v2
           with:
-            token: ${{secrets.ACCESS_TOKEN}}
+            token: ${{secrets.REPO_ACCESS_TOKEN}}
             repository: Vishu1007/Sub-test
             event-type: my-event
             client-payload: '{"github": ${{toJson(github)}}}'
