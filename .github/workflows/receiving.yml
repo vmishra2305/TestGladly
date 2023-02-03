@@ -6,12 +6,26 @@ on:
     types: [my-event]
 
 jobs:
-  build:
-    name: run-workflow
-    runs-on: ubuntu-latest
+  job1:
+    build:
+      name: run-workflow
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - name: print trigger details
+          run: npm test
+  job2:
+    needs: job1
+    run-gladly-test:
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: repository dispatch
+        uses: peter-evans/repository-dispatch@v2
         with:
-          fetch-depth: 0
-      - name: print trigger details
-        run: npm test
+          token: ${{secrets.ACCESS_TOKEN}}
+          repository: Vishu1007/Sub-test
+          event-type: my-event
+          client-payload: '{"github": ${{toJson(github)}}}'
+          run: echo${{github.event.client_payload.github.action}}
