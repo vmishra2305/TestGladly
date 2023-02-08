@@ -1,32 +1,17 @@
-# This is a basic workflow to help you get started with Actions
-
 name: run the workflow
 on:
   repository_dispatch:
     types: [my-event]
 
 jobs:
-  job1:
-    build:
-      name: run-workflow
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-          with:
-            fetch-depth: 0
-        - name: print trigger details
-          run: npm test
-  job2:
-    needs: job1
-    run-gladly-test:
-      name: run-second-workflow
-      runs-on: macos-latest
-      steps:
-        - name: repository dispatch
-          uses: peter-evans/repository-dispatch@v2
-          with:
-            token: ${{secrets.REPO_ACCESS_TOKEN}}
-            repository: Vishu1007/Sub-test
-            event-type: my-event
-            client-payload: '{"github": ${{toJson(github)}}}'
-            run: echo${{github.event.client_payload.github.action}}
+  build:
+    name: run-workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: print trigger details
+        run: |
+          echo ${{github.event.client_payload.github.action}}
+          echo ${{github.event.client_payload.github.actor}}
