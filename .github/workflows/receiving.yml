@@ -1,17 +1,15 @@
-name: run the workflow
+name: Build Web App
 on:
-  repository_dispatch:
-    types: [my-event]
-
+  workflow_dispatch:
+  push:
+    branches:
+      - master
 jobs:
   build:
-    name: run-workflow
+    name: Run API
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: print trigger details
+      - name: Build API
         run: |
-          echo ${{github.event.client_payload.github.action}}
-          echo ${{github.event.client_payload.github.actor}}
+          echo "Build API"
+          sleep 10s
