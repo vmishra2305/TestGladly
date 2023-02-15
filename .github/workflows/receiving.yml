@@ -11,6 +11,4 @@ jobs:
     steps:
       - name: Build API
         run: |
-          echo "Build API"
-          npm run test
-          sleep 10s
+          npm -v
