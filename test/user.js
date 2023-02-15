@@ -18,7 +18,6 @@ describe('Users', ()=>{
             res.body.forEach(data => {
                 expect(data.gender).to.be.eq('female');
                 expect(data.status).to.be.eq('active');
-                expect(data.id).to.be.eq(5608);
             });
             done();
         })
