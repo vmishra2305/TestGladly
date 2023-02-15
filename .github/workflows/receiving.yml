@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Build API
         run: |
-          npm run test
+          npm ci
