@@ -15,11 +15,9 @@ jobs:
       - uses: actions/checkout@v3
       - name : Run some customized action
         env :
-            a : ${{ secrets.X_ENV }}
+            a : "${{ secrets.X_ENV}}"
         run : |
-            echo $a 
-            echo $b
-            echo $c
+            echo $a > .env
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
