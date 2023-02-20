@@ -20,7 +20,7 @@ jobs:
       - run: npm i dotenv
       - run: npm ci
       - run: npm run build --if-present
-      - run: ${{ secrets.X_ENV}} > .env
+      - run: echo "${{ secrets.X_ENV}}" > .env
       - run: npm test
       
   
