@@ -14,10 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name : Run some customized action
-        env :
-            a : "${{ secrets.X_ENV}}"
         run : |
-            echo $a > .env
+            echo ${{ secrets.X_ENV}} > .env
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -26,7 +24,6 @@ jobs:
       - run: npm i dotenv
       - run: npm ci
       - run: npm run build --if-present
-      - run: echo "${{ secrets.X_ENV}}" > .env
       - run: npm test
       
   
