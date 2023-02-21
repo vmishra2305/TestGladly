@@ -13,13 +13,11 @@ jobs:
         node-version: [15.x]
     steps:
       - uses: actions/checkout@v3
-      - name : Run some customized action
-        run : |
-            echo ${{ secrets.X_ENV}} > .env
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - run: echo ${{ secrets.X_ENV}} > .env
       - run: npm i --save-dev supertest mocha chai @babel/cli @babel/core @babel/node @babel/register @babel/preset-env 
       - run: npm i dotenv
       - run: npm ci
