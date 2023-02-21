@@ -17,14 +17,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Create .env
-        uses: actions/checkout@v2
-        with: 
-          val: ${{ secrets.X_ENV}}
       - run: npm i --save-dev supertest mocha chai @babel/cli @babel/core @babel/node @babel/register @babel/preset-env 
       - run: npm i dotenv
       - run: npm ci
-      - run: echo val > .env
+      - run: echo ${{ secrets.X_ENV}} > .env
       - run: npm test
       
   
