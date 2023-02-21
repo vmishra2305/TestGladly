@@ -18,7 +18,8 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}   
+          node-version: ${{ matrix.node-version }}
+          env: "${{ secrets.X_ENV }}"
       - run: npm i --save-dev supertest mocha chai @babel/cli @babel/core @babel/node @babel/register @babel/preset-env 
       - run: npm i dotenv
       - run: npm ci
