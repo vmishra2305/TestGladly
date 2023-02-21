@@ -7,6 +7,7 @@ on:
 jobs:
   API-Analysis:
     runs-on: ubuntu-latest
+    environment: ENV_FILE
     strategy:
       matrix:
         node-version: [15.x]
@@ -16,7 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: echo "${{ secrets.ENV_FILE }}" > .env
+      - run: echo "${{ secrets.X_ENV }}" > .env
       - run: npm i --save-dev supertest mocha chai @babel/cli @babel/core @babel/node @babel/register @babel/preset-env 
       - run: npm i dotenv
       - run: npm ci
